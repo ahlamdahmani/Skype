@@ -398,6 +398,7 @@ public class ClientFrame extends JFrame implements ActionListener,
 			} else {
 				textFi = text;
 			}
+		
 		}
 		return textFi;
 	}
@@ -423,7 +424,26 @@ public class ClientFrame extends JFrame implements ActionListener,
 		}
 		return carCond;
 	}
-
+/*	public boolean getPass(String pass) {
+		int leng;
+		boolean car = false;
+		leng = pass.length();
+		if (leng > 6){
+		car = true;
+		}
+		return car;
+		
+	}
+	public boolean getPass(String pass) {
+		int leng;
+		boolean car = true;
+		leng = pass.length();
+		if (leng > 6){
+		car = false;
+		}
+		return car;
+		
+	} */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		boolean caraCond = false;
@@ -440,7 +460,8 @@ public class ClientFrame extends JFrame implements ActionListener,
 						|| getTextFilter(password) == true) {
 					caraCond = true;
 				}
-
+				
+					
 				if (caraCond == false) {
 					src.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -450,15 +471,16 @@ public class ClientFrame extends JFrame implements ActionListener,
 					});
 				}
 				/**
+				 *
 				 * si les conditions de la saisie sont correcte, on envoie la
 				 * connexion signature HSI
 				 */
-
+				
 				username = user.getText();
 				password = new String(jp.getPassword());
 				// String xUs = user.getText();
 				// String xPs = new String(jp.getPassword());
-				if (getTextFilter(username) && getTextFilter(password)) {
+				if (getTextFilter(username) && getTextFilter(password) && password.length()< 10) {
 					username = user.getText();
 					password = new String(jp.getPassword());
 					client.send(new Message("connexion", username, password,
